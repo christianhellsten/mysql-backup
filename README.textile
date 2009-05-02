@@ -1,6 +1,69 @@
-h1. MySQLBackup
+h1. mysql-backup
 
-A command line tool that backups all database instances it can find.
+A command line tool that backups all MySQL database instances it can find a server.
+
+h2. Installation
+
+<code>
+  $ gem sources -a http://gems.github.com (you only have to do this once)
+  $ sudo gem install christianhellsten-mysql-backup
+</code>
+
+h2. Configuration
+
+Configuration is easy, just run the built-in mysql_backup_install command:
+
+<code>
+  $ sudo mysql_backup_install
+</code>
+
+The installation script will ask you to enter all necessary information and then writes the configuration to /etc/mysql_backup.
+
+h2. Usage
+
+Taking a backup of all databases is also easy:
+
+<code>
+  $ sudo mysql_backup
+</code>
+
+This will backup all databases, except the ones defined in the configuration file using the *skip* parameter.
+
+h2. Scheduled backups with cron
+
+Open the cron configuration with the following command:
+
+<code>
+$ sudo crontab -e
+</code>
+
+Add the following:
+
+<code>
+PATH=/usr/local/bin:/usr/bin:/bin
+SHELL=/bin/bash
+
+# m h  dom mon dow   command
+
+# Backup all MySQL databases every night at 24:00
+
+00 00 * * * mysql_backup
+</code>
+
+h2. Sample configuration
+
+<code>
+user: root
+password: xxx
+host: localhost
+dir: /var/backup
+format: %d-%m-%y
+
+mysqldump:
+  options: -Q -c -C --add-drop-table --add-locks --quick --lock-tables
+  path:
+skip: [mysql, test, information_schema]
+</code>
 
 h2. TODO
 

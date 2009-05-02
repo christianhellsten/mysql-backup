@@ -1,0 +1,9 @@
+user: USER
+password: PASS
+host: HOST
+dir: DIR
+format: %d-%m-%y
+mysqldump:
+  options: -Q -c -C --add-drop-table --add-locks --quick --lock-tables
+  path:
+skip: [mysql, test, information_schema]
