@@ -91,7 +91,7 @@ h2. TODO
 * Compress backups
 * Keep x latest backups
 * List dependencies
-* Fix Debian
+* Handle mysqldump errors
 
 h2. Author
 
