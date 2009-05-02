@@ -1,0 +1,13 @@
+h1. MySQLBackup
+
+A command line tool that backups all database instances it can find.
+
+h2. TODO
+
+* Compress backups
+* Keep x latest backups
+
+h2. Author
+
+"Christian Hellsten":http://christianhellsten.com ("Aktagon Ltd.":http://aktagon.com)
+
