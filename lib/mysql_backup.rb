@@ -55,11 +55,11 @@ exit
         end 
       end
 
-      user      = options['user'] #'root'
-      password  = options['password'] #''
-      host      = options['host'] #'localhost'
-      encoding  = options['encoding']# 'utf8'
-      dir       = options['dir'] #'/tmp'
+      user      = options['user']
+      password  = options['password']
+      host      = options['host']
+      encoding  = options['encoding']
+      dir       = options['dir']
       format    = options['format']
 
       #pp options
