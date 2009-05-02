@@ -12,7 +12,7 @@ class MysqlBackup
 end
 
 ['install', 'pty', 'options', 'backup'].each do |file|
-  require "lib/mysql_backup/#{file}"
+  require File.dirname(__FILE__) + "/mysql_backup/#{file}"
 end
 
 if __FILE__ == $0

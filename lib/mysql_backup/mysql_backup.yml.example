@@ -3,6 +3,8 @@ password: PASS
 host: HOST
 dir: DIR
 format: %d-%m-%y
+keep: 10
+
 mysqldump:
   options: -Q -c -C --add-drop-table --add-locks --quick --lock-tables
   path:

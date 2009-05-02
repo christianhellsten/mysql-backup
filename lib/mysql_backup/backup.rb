@@ -3,6 +3,7 @@
 class MysqlBackup
   class << self
 
+    # TODO refactor, too long
     def run
       user      = options['user']
       password  = options['password']
@@ -10,10 +11,10 @@ class MysqlBackup
       encoding  = options['encoding']
       dir       = options['dir']
       format    = options['format']
+      keep      = options['keep'] || 10
       skip      = options['skip']
       mysqldump_options = options['mysqldump']['options']
       path      = options['mysqldump']['path']
-
 
       timestamp = Time.now.strftime(format)
 
@@ -30,10 +31,31 @@ class MysqlBackup
 
         file = File.join(dir, "#{db}_#{timestamp}.sql")
         p "Backing up #{db.ljust(40)} > #{file}"
-        cmd = "#{path}mysqldump -u#{user} -p#{password} -h#{host} #{mysqldump_options} #{db} > #{file}"
+
+        cmd = "#{path}mysqldump -u#{user} -p#{password} -h#{host} #{mysqldump_options} #{db} --result-file=#{file}"
         
         result = exec_pty(cmd, password)
+
+        if options['gzip'] != false
+          `gzip -fq #{file}`
+        end
+    
+        # Find all backups and sort
+        all_backups = Dir.entries("#{dir}").select{|f| f =~ /^#{db}/}.select{|f| File.file? "#{File.join(dir, f)}" }.sort_by { |f| File.mtime("#{File.join(dir,f)}") }.reverse
+
+        #pp all_backups
+
+        keep = all_backups[0..keep] # eg. 10 latest
+
+        remove = all_backups - keep
+
+        remove.each do |file|
+          puts "Removing backup '#{file}' keeping #{keep}"
+          FileUtils.rm_rf(file)
+        end
       end
+
     end
+
   end
 end

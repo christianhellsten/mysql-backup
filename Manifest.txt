@@ -8,5 +8,6 @@ lib/mysql_backup.rb
 lib/mysql_backup/install.rb
 lib/mysql_backup/pty.rb
 lib/mysql_backup/backup.rb
+lib/mysql_backup/options.rb
 lib/mysql_backup/mysql_backup.yml.example
 test/test_mysql_backup.rb

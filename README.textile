@@ -7,7 +7,7 @@ h2. Installation
 <pre>
 <code>
   $ gem sources -a http://gems.github.com (you only have to do this once)
-  $ sudo gem install christianhellsten-MysqlBackup
+  $ sudo gem install christianhellsten-mysql-backup
 </code>
 </pre>
 
@@ -68,6 +68,7 @@ SHELL=/bin/bash
 
 00 00 * * * mysql_backup
 </code>
+</pre>
 
 h2. Sample configuration
 
@@ -78,6 +79,7 @@ password: xxx
 host: localhost
 dir: /var/backup
 format: %d-%m-%y
+keep: 10
 
 mysqldump:
   options: -Q -c -C --add-drop-table --add-locks --quick --lock-tables
@@ -88,10 +90,10 @@ skip: [mysql, test, information_schema]
 
 h2. TODO
 
-* Compress backups
-* Keep x latest backups
+* Refactor
 * List dependencies
-* Handle mysqldump errors
+* Handle command line errors gracefully
+* Nice
 
 h2. Author
 
