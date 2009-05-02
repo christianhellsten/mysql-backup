@@ -11,6 +11,16 @@ h2. Installation
 </code>
 </pre>
 
+You can also grab the source code and install with rake:
+<pre>
+<code>
+  $ cd /usr/local/src
+  $ git clone git://github.com/christianhellsten/mysql-backup.git
+  $ cd mysql-backup
+  $ sudo rake install_gem
+</code>
+</pre>
+
 h2. Configuration
 
 Configuration is easy, just run the built-in mysql_backup_install command:
@@ -80,6 +90,8 @@ h2. TODO
 
 * Compress backups
 * Keep x latest backups
+* List dependencies
+* Fix Debian
 
 h2. Author
 

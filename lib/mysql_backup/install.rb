@@ -45,7 +45,7 @@ class MysqlBackup
           file << template
         end
 
-        FileUtils.chown(750, CONF_FILE)
+        FileUtils.chmod(750, CONF_FILE)
 
         puts <<-ERR
 

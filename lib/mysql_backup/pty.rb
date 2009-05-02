@@ -4,11 +4,11 @@
 #
 class MysqlBackup
   class << self
-    def exec_pty(cmd)
+    def exec_pty(cmd, password)
       #$expect_verbose = true 
       PTY.spawn(cmd) do |reader, writer, pid|
         reader.expect(/Enter password/) do |line|
-          writer.puts ''
+          writer.puts password
         end 
 
         while line=reader.gets

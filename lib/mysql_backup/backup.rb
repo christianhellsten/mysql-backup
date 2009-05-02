@@ -1,11 +1,9 @@
-require 'ruby-debug'
+#require 'ruby-debug'
 
 class MysqlBackup
   class << self
 
     def run
-      #pp options['mysqldump']['options']
-
       user      = options['user']
       password  = options['password']
       host      = options['host']
@@ -34,7 +32,7 @@ class MysqlBackup
         p "Backing up #{db.ljust(40)} > #{file}"
         cmd = "#{path}mysqldump -u#{user} -p#{password} -h#{host} #{mysqldump_options} #{db} > #{file}"
         
-        result = exec_pty(cmd)
+        result = exec_pty(cmd, password)
       end
     end
   end
