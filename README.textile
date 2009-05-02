@@ -4,18 +4,22 @@ A command line tool that backups all MySQL database instances it can find a serv
 
 h2. Installation
 
+<pre>
 <code>
   $ gem sources -a http://gems.github.com (you only have to do this once)
   $ sudo gem install christianhellsten-mysql-backup
 </code>
+</pre>
 
 h2. Configuration
 
 Configuration is easy, just run the built-in mysql_backup_install command:
 
+<pre>
 <code>
   $ sudo mysql_backup_install
 </code>
+</pre>
 
 The installation script will ask you to enter all necessary information and then writes the configuration to /etc/mysql_backup.
 
@@ -23,9 +27,11 @@ h2. Usage
 
 Taking a backup of all databases is also easy:
 
+<pre>
 <code>
   $ sudo mysql_backup
 </code>
+</pre>
 
 This will backup all databases, except the ones defined in the configuration file using the *skip* parameter.
 
@@ -33,12 +39,15 @@ h2. Scheduled backups with cron
 
 Open the cron configuration with the following command:
 
+<pre>
 <code>
 $ sudo crontab -e
 </code>
+</pre>
 
 Add the following:
 
+<pre>
 <code>
 PATH=/usr/local/bin:/usr/bin:/bin
 SHELL=/bin/bash
@@ -52,6 +61,7 @@ SHELL=/bin/bash
 
 h2. Sample configuration
 
+<pre>
 <code>
 user: root
 password: xxx
@@ -64,6 +74,7 @@ mysqldump:
   path:
 skip: [mysql, test, information_schema]
 </code>
+</pre>
 
 h2. TODO
 
