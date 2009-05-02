@@ -1,0 +1,7 @@
+History.txt
+Manifest.txt
+README.txt
+Rakefile
+bin/mysql_backup
+lib/mysql_backup.rb
+test/test_mysql_backup.rb

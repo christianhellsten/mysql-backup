@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'mysql_backup'
+
+MysqlBackup.run
