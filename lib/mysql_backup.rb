@@ -8,7 +8,7 @@ require 'pty'
 require 'pp'
 
 class MysqlBackup
-  VERSION = '1.0.0'
+  VERSION = '1.1.0'
 end
 
 ['install', 'pty', 'options', 'backup'].each do |file|

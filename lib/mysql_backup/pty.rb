@@ -9,13 +9,16 @@ class MysqlBackup
       password = '' if password.nil?
 
       PTY.spawn(cmd) do |reader, writer, pid|
-        reader.expect(/Enter password/) do |line|
+        reader.expect(/Enter password/, 1) do |line|
           writer.puts password
         end 
 
-        while line = reader.gets
-      # TODO detect errors 
-      #    print line
+        begin
+          while line = reader.gets
+        # TODO detect errors we should act upon
+        #    print line
+          end
+        rescue Errno::EIO # EOF
         end
       end 
     end
