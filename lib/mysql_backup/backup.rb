@@ -11,7 +11,7 @@ class MysqlBackup
       encoding  = options['encoding']
       dir       = options['dir']
       format    = options['format']
-      keep      = options['keep'] || 10
+      keep      = options['keep'] || 10
       skip      = options['skip']
       mysqldump_options = options['mysqldump']['options']
       path      = options['mysqldump']['path']
@@ -36,18 +36,17 @@ class MysqlBackup
         
         result = exec_pty(cmd, password)
 
-        if options['gzip'] != false
-          `gzip -fq #{file}`
-        end
+        # gzip 
+        `gzip -fq #{file}`
     
         # Find all backups and sort
-        all_backups = Dir.entries("#{dir}").select{|f| f =~ /^#{db}/}.select{|f| File.file? "#{File.join(dir, f)}" }.sort_by { |f| File.mtime("#{File.join(dir,f)}") }.reverse
+        all_backups = Dir.entries(dir).select{|f| f =~ /^#{db}/}.select{|f| File.file? File.join(dir, f) }.sort_by { |f| File.mtime(File.join(dir,f)) }.reverse
 
         #pp all_backups
 
-        keep = all_backups[0..keep] # eg. 10 latest
+        keep_backups = all_backups[0..keep] # eg. 10 latest
 
-        remove = all_backups - keep
+        remove = all_backups - keep_backups
 
         remove.each do |file|
           puts "Removing backup '#{file}' keeping #{keep}"

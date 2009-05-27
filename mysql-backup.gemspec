@@ -21,6 +21,9 @@ Gem::Specification.new do |s|
   s.summary = %q{mysql-backup is a command line tool that backups all MySQL database instances it can find on a server.}
   s.test_files = ["test/test_mysql_backup.rb"]
 
+  s.add_dependency(%q<sequel>, [">= 2.0.0"])
+  s.add_dependency(%q<highline>, [">= 1.4.0"])
+
   if s.respond_to? :specification_version then
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     s.specification_version = 2
