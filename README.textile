@@ -16,7 +16,7 @@ You can also grab the source code and install with rake:
   $ cd /usr/local/src
   $ git clone git://github.com/christianhellsten/mysql-backup.git
   $ cd mysql-backup
-  $ sudo rake install_gem
+  $ sudo rake install
 </code>
 </pre>
 
