@@ -1,20 +1,30 @@
-$:.unshift(File.dirname(__FILE__)) unless
-  $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname(__FILE__)))
-
-require 'rubygems'
+#
+# TODO Cleanup code
+#
 require 'sequel'
-require 'expect'
 require 'pty'
-require 'pp'
 
-class MysqlBackup
-  VERSION = '1.1.0'
+require 'lib/mysql_backup/backup'
+require 'lib/mysql_backup/options'
+require 'lib/mysql_backup/pty'
+require 'lib/mysql_backup/install'
+
+module MysqlBackup
+  def self.version
+    yml = YAML.load(File.read(File.join(File.dirname(__FILE__), *%w[.. VERSION.yml])))
+    "#{yml[:major]}.#{yml[:minor]}.#{yml[:patch]}"
+  end
+  
+  def self.run
+    Backup.run
+  end
+
+  def self.options
+    Options.options
+  end
+
+  def self.install
+    Install.install
+  end
 end
 
-['install', 'pty', 'options', 'backup'].each do |file|
-  require File.dirname(__FILE__) + "/mysql_backup/#{file}"
-end
-
-if __FILE__ == $0
-  MysqlBackup.run
-end
