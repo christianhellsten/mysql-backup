@@ -11,6 +11,7 @@ begin
     gem.homepage = "http://github.com/christianhellsten/mysql-backup"
     gem.authors = ["Christian Hellsten"]
     gem.add_dependency "sequel", ">= 0"
+    gem.add_dependency "highline", ">= 0"
     gem.files =  FileList["[A-Z]*", "{bin,lib,test}/**/*"]
     gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
