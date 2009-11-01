@@ -6,7 +6,7 @@ module MysqlBackup
   class Pty
     class << self
       def exec_pty(cmd, password)
-        $expect_verbose = true 
+#        $expect_verbose = true # NOTE uncomment to print output 
         password = '' if password.nil?
 
         PTY.spawn(cmd) do |reader, writer, pid|
@@ -15,7 +15,8 @@ module MysqlBackup
               writer.puts password
             end 
           rescue
-            print reader.gets
+            puts "WARN: #{$!}" # TODO this can fail with unknown consequences
+            puts reader.gets
           end
 
           begin

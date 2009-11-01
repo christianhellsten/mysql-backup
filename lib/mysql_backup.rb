@@ -1,13 +1,15 @@
+$:.unshift File.dirname(__FILE__)
+
 #
 # TODO Cleanup code
 #
 require 'sequel'
 require 'pty'
+require 'expect'
 
-require 'lib/mysql_backup/backup'
-require 'lib/mysql_backup/options'
-require 'lib/mysql_backup/pty'
-require 'lib/mysql_backup/install'
+['install', 'pty', 'options', 'backup'].each do |file|
+  require File.dirname(__FILE__) + "/mysql_backup/#{file}"
+end
 
 module MysqlBackup
   def self.version
@@ -28,3 +30,6 @@ module MysqlBackup
   end
 end
 
+if __FILE__ == $0
+  MysqlBackup.run
+end
