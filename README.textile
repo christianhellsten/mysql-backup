@@ -1,6 +1,6 @@
 h1. mysql-backup
 
-A command line tool that backups all MySQL database instances it can find a server.
+A command line tool that backups all MySQL database instances it can find on a MySQL server.
 
 h2. Installation
 
